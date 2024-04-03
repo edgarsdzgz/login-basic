@@ -1,14 +1,22 @@
 import express from 'express';
 import dotenv from 'dotenv';
+// import bodyParser from 'body-parser';
 
 const app = express();
 dotenv.config();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   res.send('Welcome!');
+})
+
+app.post('/create', (req, res) => {
+  console.log(req.body);
+  res.send({
+    data: req.body,
+  })
 })
 
 // Start listening for requests on this express app server
