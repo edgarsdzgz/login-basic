@@ -1,18 +1,21 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-// import bodyParser from 'body-parser';
 
 const app = express();
 dotenv.config();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Welcome!');
 })
 
-app.post('/create', (req, res) => {
+app.get('/users/:id', (req: Request, res: Response) => {
+  res.send(`You are looking at user with ID: ${req.params.id}`);
+})
+
+app.post('/create', (req: Request, res: Response) => {
   console.log(req.body);
   res.send({
     data: req.body,
